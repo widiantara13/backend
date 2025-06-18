@@ -5,15 +5,16 @@ import { getProduct,
          updateProduct,
          deleteProduct
 } from '../controller/ProductController.js';
+import { verifyUser } from '../middleware/CheckAuth.js';
 
 
 const router = express.Router();
 
-router.get('/product', getProduct);
-router.get('/product/:id', getProductById);
-router.post('/product', addProduct);
-router.put('/product/:id', updateProduct);
-router.delete('/product/:id', deleteProduct);
+router.get('/product', verifyUser, getProduct);
+router.get('/product/:id', verifyUser, getProductById);
+router.post('/product',verifyUser, addProduct);
+router.put('/product/:id',verifyUser, updateProduct);
+router.delete('/product/:id',verifyUser, deleteProduct);
 
 export default router;
 
